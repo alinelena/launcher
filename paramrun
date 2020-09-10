@@ -305,7 +305,7 @@ else
   for host in `cat $LAUNCHER_HOSTFILE`
   do
     echo "starting job on $host" >&2
-    ( auto-retry ssh $host "cd $LAUNCHER_WORKDIR; env `$LAUNCHER_DIR/pass_env` LAUNCHER_NHOSTS=$np LAUNCHER_HOST_ID=$i $LAUNCHER_DIR/init_launcher" ) &
+    ( auto-retry ssh -oStrictHostKeyChecking=no $host "cd $LAUNCHER_WORKDIR; env `$LAUNCHER_DIR/pass_env` LAUNCHER_NHOSTS=$np LAUNCHER_HOST_ID=$i $LAUNCHER_DIR/init_launcher" ) &
 #    This is the previoous version before auto_try
 #    ssh $host "cd $LAUNCHER_WORKDIR; env `$LAUNCHER_DIR/pass_env` LAUNCHER_NHOSTS=$np LAUNCHER_HOST_ID=$i $LAUNCHER_DIR/init_launcher" &
     i=`expr $i + 1`
